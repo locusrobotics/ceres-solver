@@ -53,19 +53,6 @@ endif()
 
 project(Ceres C CXX)
 
-# Check which version of ubuntu we are running
-find_program(LSB_RELEASE_EXEC lsb_release)
-execute_process(COMMAND ${LSB_RELEASE_EXEC} --codename --short
-    OUTPUT_VARIABLE OS_CODENAME
-    OUTPUT_STRIP_TRAILING_WHITESPACE
-)
-
-# Exit if we're not building on jammy
-if (NOT OS_CODENAME STREQUAL "noble")
-  message(STATUS "Detected Ubuntu version different than noble, not building this package ")
-  return()
-endif()
-
 # NOTE: The following CMake variables must be applied consistently to all
 # targets in project to avoid visibility warnings by placing the variables at
 # the project top.
